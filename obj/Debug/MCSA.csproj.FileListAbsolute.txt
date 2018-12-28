@@ -1,0 +1,7 @@
+C:\Users\evan\Desktop\Languages\C#\MCSA\MCSA\bin\Debug\MCSA.exe.config
+C:\Users\evan\Desktop\Languages\C#\MCSA\MCSA\bin\Debug\MCSA.exe
+C:\Users\evan\Desktop\Languages\C#\MCSA\MCSA\bin\Debug\MCSA.pdb
+C:\Users\evan\Desktop\Languages\C#\MCSA\MCSA\obj\Debug\MCSA.csprojAssemblyReference.cache
+C:\Users\evan\Desktop\Languages\C#\MCSA\MCSA\obj\Debug\MCSA.csproj.CoreCompileInputs.cache
+C:\Users\evan\Desktop\Languages\C#\MCSA\MCSA\obj\Debug\MCSA.exe
+C:\Users\evan\Desktop\Languages\C#\MCSA\MCSA\obj\Debug\MCSA.pdb
