@@ -181,8 +181,7 @@ namespace MCSA
             {
                 if (token.IsCancellationRequested)
                 {
-                    Console.WriteLine("In iteration {0}, cancellation has been requested...",
-                                      i + 1);
+                    Console.WriteLine("In iteration {0}, cancellation has been requested...", i + 1);
                     // Perform cleanup if necessary.
                     // Terminate the operation.
                     break;
