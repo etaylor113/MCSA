@@ -1,28 +1,262 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MCSA
+namespace Prep
 {
     class Program
     {
         static void Main(string[] args)
         {
-            ParallelDotFor();
-            ParallelDotForeach();
-            ContinuationTasks();
-            RunThreadPool();
-            UnblockUI();
-            AsyncAwait();
-            ConcurrentCollections();
-            ObjectLocking();
-            CancellationToken();
-            Mutex();
-            Semaphore();
-            EventWaitHandle();
-            ManualResetEvent();
+
+            // Is Narcissistic Number
+            //bool isNarc1 = Narcissistic(153);
+            //bool isNarc2 = Narcissistic(10);
+            //bool isNarc3 = Narcissistic(1123);
+
+            // Song Decoder
+            //string decoded1 = SongDecoder("WUBWUBABCWUB");
+            //string decoded2 = SongDecoder("RWUBWUBWUBLWUB");
+            //string decoded3 = SongDecoder("WUBRWUBWUBWUBWUBWUBWUBLWUBWUB");
+
+            // XO 
+            //bool isTrue1 = XO("ooxx");
+            //bool isTrue2 = XO("xooxx");
+            //bool isTrue3 = XO("ooxXm");
+            //bool isTrue4 = XO("zpzpzpp");
+            //bool isTrue5 = XO("zzoo");
+
+            // Maskify
+            //string maskedCardNum1 = Maskify("0123456789");
+            //string maskedCardNum2 = Maskify("1");
+            //string maskedCardNum3 = Maskify("11111");
+
+            // *** To Lower Case
+            //string nameLowerCased = ToLowerCase("EVAN");
+
+            // *** Jewels and Stones problem
+            //int total = JewelsAndStones("aA", "aAAbbbb");
+
+            // *** IsPalindrome problem
+            //bool pallyOne = IsPalindrome(112211);
+            //bool pallyTwo = IsPalindrome(112212);
+            //bool pallyThree = IsPalindrome(11211);
+
+            // *** Reverse Int problem
+            //int reversedInt = ReverseInteger(-320);
+
+            // *** Two Sum problem
+            //int[] nums = new int[4] { 2, 7, 11, 15 };
+            //int target = 18;
+            //int[] incices = TwoSum(nums, target);
+
+            // Higher level C# methods
+            //ParallelDotFor();
+            //ParallelDotForeach();
+            //ContinuationTasks();
+            //RunThreadPool();
+            //UnblockUI();
+            //AsyncAwait();
+            //ConcurrentCollections();
+            //ObjectLocking();
+            //CancellationToken();
+            //Mutex();
+            //Semaphore();
+            //EventWaitHandle();
+            //ManualResetEvent();
+            //AutoResetEvent();
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+
+        public static bool Narcissistic(int value)
+        {
+            int[] values = Array.ConvertAll(value.ToString().ToArray(), x => (int)x - 48);
+
+            int total = 0;
+            foreach (int v in values)
+                total += (int)Math.Pow(v, values.Length);
+
+            return total == value ? true : false;
+        }
+
+        public static int[] Divisors(int n)
+        {
+            int[] retArray = { };
+
+            // Check if number is prime
+            if (n <= 1)
+                return null;
+
+            if (n <= 1) return null;
+            if (n % 2 == 0) return null;
+
+            var boundary = (int)Math.Floor(Math.Sqrt(n));
+
+            for (int i = 3; i <= boundary; i += 2)
+                if (n % i == 0)
+                    return null;
+
+            // Find divisors
+            int ct = 0;
+            while (ct > 100)
+            {
+                if (ct >= n)
+                    return retArray;
+                else
+                {
+
+                }
+
+            }
+
+            return retArray;
+        }
+
+        public static string SongDecoder(string input)
+        {
+            input = input.Replace("WUB", " ").Trim();
+            char temp = ' ';
+            string tempinput = input;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (temp == input[i])
+                    tempinput = input.Remove(i, 2);
+                temp = input[i];
+            }
+
+            return tempinput;
+        }
+
+
+        public static bool XO(string input)
+        {
+            return input.ToCharArray().Where(x => x.ToString().ToLower() == "x").Count() == input.ToCharArray().Where(x => x.ToString().ToLower() == "o").Count();
+        }
+
+        public static string Maskify(string cc)
+        {
+            char[] chars = cc.ToCharArray();
+
+            if (chars.Length <= 4)
+                return cc;
+
+            for (int i = chars.Length; i > 0; i--)
+            {
+                if (i < chars.Length - 3)
+                    chars[i-1] = '#';
+            }
+
+            return new string(chars);
+        }
+
+
+        public static string ToLowerCase(string str)
+        {
+            return str.ToLower();
+        }
+
+
+        public static int JewelsAndStones(string J, string S)
+        {
+            // J = aA
+            // S = aAAbbbb
+
+            List<char> jewelTypes = new List<char>();
+            jewelTypes.AddRange(J.ToCharArray());
+
+            List<char> stones = new List<char>();
+            stones.AddRange(S.ToCharArray());
+
+            int jewelCt = 0;
+
+            foreach (char letter in S)
+            {
+                if (jewelTypes.Contains(letter))
+                {
+                    jewelCt++;
+                    stones.RemoveAll(x => x == letter);
+                }
+            }
+
+            return jewelCt;
+
+        }
+
+
+        public static bool IsPalindrome(int x)
+        {
+            List<char> charList = new List<char>();
+            charList.AddRange(x.ToString().ToCharArray());
+
+            string firstHalf = "";
+            string secondHalf = "";
+
+            if (charList.Count % 2 != 0)
+            {
+                int midIdx = (int)(charList.Count/2);         
+                charList.RemoveAt(midIdx);
+            }
+
+            firstHalf = string.Concat(charList.GetRange(0, charList.Count/2));
+
+            int index = (charList.Count / 2);
+            int length = (charList.Count / 2);
+            var f = charList.GetRange(index, length);
+            f.Reverse();
+            secondHalf = string.Concat(f);
+
+            if (secondHalf == firstHalf)
+                return true;
+            else
+                return false;
+        }
+
+
+        static int ReverseInteger(int x)
+        {
+            int rem = 0;
+            int r = 0;
+
+            while (x != 0)
+            {
+                rem = x % 10;
+
+                if (x > 0 && r > int.MaxValue / 10) return 0;
+                if (x < 0 && r < int.MinValue / 10) return 0;
+
+                r = r * 10;
+
+                if (x < 0 && rem < (int.MinValue - r)) return 0;
+                if (x > 0 && rem > (int.MaxValue - r)) return 0;
+
+                r = r + rem;
+                x = x / 10;
+            }
+            return r;
+        }
+
+
+        static int[] TwoSum(int[] nums, int target)
+        {
+            for (int o = 0; o < nums.Length; o++)
+            {
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (o == i)
+                        continue;
+                    else if (nums[o] + nums[i] == target)
+                        return new int[2] { o, i };
+                }
+            }
+            return null;
         }
 
 
@@ -76,7 +310,6 @@ namespace MCSA
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
         //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 
 
         // Continuation Task
@@ -216,7 +449,6 @@ namespace MCSA
         // Cancel a long running task using a cancellation token
 
         CancellationTokenSource tokenSource = new CancellationTokenSource();
-        CancellationToken token = new CancellationToken();
 
         private static void CancellationToken()
         {
@@ -692,5 +924,4 @@ namespace MCSA
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-}
 }

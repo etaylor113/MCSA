@@ -1,0 +1,7 @@
+C:\Users\evan\Desktop\Languages\C#\Test Apps\MCSA\MCSA\bin\Debug\Prep.exe.config
+C:\Users\evan\Desktop\Languages\C#\Test Apps\MCSA\MCSA\bin\Debug\Prep.exe
+C:\Users\evan\Desktop\Languages\C#\Test Apps\MCSA\MCSA\bin\Debug\Prep.pdb
+C:\Users\evan\Desktop\Languages\C#\Test Apps\MCSA\MCSA\obj\Debug\Prep.csprojAssemblyReference.cache
+C:\Users\evan\Desktop\Languages\C#\Test Apps\MCSA\MCSA\obj\Debug\Prep.csproj.CoreCompileInputs.cache
+C:\Users\evan\Desktop\Languages\C#\Test Apps\MCSA\MCSA\obj\Debug\Prep.exe
+C:\Users\evan\Desktop\Languages\C#\Test Apps\MCSA\MCSA\obj\Debug\Prep.pdb
