@@ -12,49 +12,15 @@ namespace Prep
     {
         static void Main(string[] args)
         {
+            //CallMethod();
+            //LambdaPractice();
+            //LinqPractice();
+            //NullCoalescePractice();
+            //NullConditionalPractice();
+            //AsIsOperatorPractice();
+            //YieldPractice();
+            InterfacePractice();
 
-            // Is Narcissistic Number
-            //bool isNarc1 = Narcissistic(153);
-            //bool isNarc2 = Narcissistic(10);
-            //bool isNarc3 = Narcissistic(1123);
-
-            // Song Decoder
-            //string decoded1 = SongDecoder("WUBWUBABCWUB");
-            //string decoded2 = SongDecoder("RWUBWUBWUBLWUB");
-            //string decoded3 = SongDecoder("WUBRWUBWUBWUBWUBWUBWUBLWUBWUB");
-
-            // XO 
-            //bool isTrue1 = XO("ooxx");
-            //bool isTrue2 = XO("xooxx");
-            //bool isTrue3 = XO("ooxXm");
-            //bool isTrue4 = XO("zpzpzpp");
-            //bool isTrue5 = XO("zzoo");
-
-            // Maskify
-            //string maskedCardNum1 = Maskify("0123456789");
-            //string maskedCardNum2 = Maskify("1");
-            //string maskedCardNum3 = Maskify("11111");
-
-            // *** To Lower Case
-            //string nameLowerCased = ToLowerCase("EVAN");
-
-            // *** Jewels and Stones problem
-            //int total = JewelsAndStones("aA", "aAAbbbb");
-
-            // *** IsPalindrome problem
-            //bool pallyOne = IsPalindrome(112211);
-            //bool pallyTwo = IsPalindrome(112212);
-            //bool pallyThree = IsPalindrome(11211);
-
-            // *** Reverse Int problem
-            //int reversedInt = ReverseInteger(-320);
-
-            // *** Two Sum problem
-            //int[] nums = new int[4] { 2, 7, 11, 15 };
-            //int target = 18;
-            //int[] incices = TwoSum(nums, target);
-
-            // Higher level C# methods
             //ParallelDotFor();
             //ParallelDotForeach();
             //ContinuationTasks();
@@ -75,189 +41,174 @@ namespace Prep
         //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
-
-        public static bool Narcissistic(int value)
+        // Async & Await
+        private static async void AsyncAwaitPractice()
         {
-            int[] values = Array.ConvertAll(value.ToString().ToArray(), x => (int)x - 48);
+            Task<int> task = Method1();
 
-            int total = 0;
-            foreach (int v in values)
-                total += (int)Math.Pow(v, values.Length);
+            Method2();
 
-            return total == value ? true : false;
+            int count = await task;
+
+            Method3(count);
+
+            Console.ReadLine();
         }
 
-        public static int[] Divisors(int n)
+        private static async Task<int> Method1()
         {
-            int[] retArray = { };
-
-            // Check if number is prime
-            if (n <= 1)
-                return null;
-
-            if (n <= 1) return null;
-            if (n % 2 == 0) return null;
-
-            var boundary = (int)Math.Floor(Math.Sqrt(n));
-
-            for (int i = 3; i <= boundary; i += 2)
-                if (n % i == 0)
-                    return null;
-
-            // Find divisors
-            int ct = 0;
-            while (ct > 100)
+            int count = 0;
+            await Task.Run(() =>
             {
-                if (ct >= n)
-                    return retArray;
-                else
+                for (int i = 0; i < 5; i++)
                 {
-
+                    Console.WriteLine(" Method 1");
+                    count += 1;
+                    Thread.Sleep(100);
                 }
-
-            }
-
-            return retArray;
+            });
+            return count;
         }
 
-        public static string SongDecoder(string input)
+        private static void Method2()
         {
-            input = input.Replace("WUB", " ").Trim();
-            char temp = ' ';
-            string tempinput = input;
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 0; i < 5; i++)
             {
-                if (temp == input[i])
-                    tempinput = input.Remove(i, 2);
-                temp = input[i];
+                Console.WriteLine(" Method 2");
+                Thread.Sleep(100);
             }
+        }
 
-            return tempinput;
+        private static void Method3(int count)
+        {
+            Console.WriteLine("Total count is " + count);
         }
 
 
-        public static bool XO(string input)
+        // Lambdas
+        private static void LambdaPractice()
         {
-            return input.ToCharArray().Where(x => x.ToString().ToLower() == "x").Count() == input.ToCharArray().Where(x => x.ToString().ToLower() == "o").Count();
-        }
+            List<string> listPeople = new List<string>() { "Evan", "Jeff", "Mike", "Erikson", "Jameson" };
+            List<string> listSonNames = new List<string>();
 
-        public static string Maskify(string cc)
-        {
-            char[] chars = cc.ToCharArray();
+            listSonNames.AddRange(listPeople.Where(x => x.Contains("son")));
 
-            if (chars.Length <= 4)
-                return cc;
-
-            for (int i = chars.Length; i > 0; i--)
+            listSonNames.ForEach(delegate(string name)
             {
-                if (i < chars.Length - 3)
-                    chars[i-1] = '#';
-            }
+                Console.WriteLine(name);
+            });
 
-            return new string(chars);
+            Console.ReadLine();
         }
 
 
-        public static string ToLowerCase(string str)
+        // LINQ
+        private static void LinqPractice()
         {
-            return str.ToLower();
+            List<string> listPeople = new List<string>() { "Evan", "Jeff", "Mike", "Erikson", "Jameson" };
+            List<string> listSonNames = new List<string>();
+
+            var query =
+                from name in listPeople
+                where name.Contains("son")
+                select name;
+
+            listSonNames.AddRange(query);
         }
 
 
-        public static int JewelsAndStones(string J, string S)
+        // Null Coalesce
+        private static void NullCoalescePractice()
         {
-            // J = aA
-            // S = aAAbbbb
+            string firstName = null;
 
-            List<char> jewelTypes = new List<char>();
-            jewelTypes.AddRange(J.ToCharArray());
-
-            List<char> stones = new List<char>();
-            stones.AddRange(S.ToCharArray());
-
-            int jewelCt = 0;
-
-            foreach (char letter in S)
-            {
-                if (jewelTypes.Contains(letter))
-                {
-                    jewelCt++;
-                    stones.RemoveAll(x => x == letter);
-                }
-            }
-
-            return jewelCt;
-
+            string fullName = $"FirstName: {firstName ?? "N/A"}";
         }
 
 
-        public static bool IsPalindrome(int x)
+        // Null Conditional
+        private static void NullConditionalPractice()
         {
-            List<char> charList = new List<char>();
-            charList.AddRange(x.ToString().ToCharArray());
+            Dog fido = new Dog();
+            string name = fido?.Name;
+            fido.Name = "Spot";
+            string dogName = fido.Name;
+        }
 
-            string firstHalf = "";
-            string secondHalf = "";
 
-            if (charList.Count % 2 != 0)
-            {
-                int midIdx = (int)(charList.Count/2);         
-                charList.RemoveAt(midIdx);
-            }
+        // As and Is operators
+        private static void AsIsOperatorPractice()
+        {
+            // is operator
+            Dog spot = new Dog();
 
-            firstHalf = string.Concat(charList.GetRange(0, charList.Count/2));
-
-            int index = (charList.Count / 2);
-            int length = (charList.Count / 2);
-            var f = charList.GetRange(index, length);
-            f.Reverse();
-            secondHalf = string.Concat(f);
-
-            if (secondHalf == firstHalf)
-                return true;
+            if (spot is Dog)
+                Console.WriteLine("Spot is a dog.");
             else
-                return false;
-        }
+                Console.WriteLine("Spot is not a dog.");
 
+            // as operator
+            List<object> numbers = new List<object>() { 1, "2", 3, '4', "5", 6 };
 
-        static int ReverseInteger(int x)
-        {
-            int rem = 0;
-            int r = 0;
-
-            while (x != 0)
+            foreach (object n in numbers)
             {
-                rem = x % 10;
-
-                if (x > 0 && r > int.MaxValue / 10) return 0;
-                if (x < 0 && r < int.MinValue / 10) return 0;
-
-                r = r * 10;
-
-                if (x < 0 && rem < (int.MinValue - r)) return 0;
-                if (x > 0 && rem > (int.MaxValue - r)) return 0;
-
-                r = r + rem;
-                x = x / 10;
+                if (n is string print) // print is the dummy object
+                    Console.WriteLine($"Object {print} is a string.");
+                else
+                    Console.WriteLine("Object was not a string.");
             }
-            return r;
         }
 
 
-        static int[] TwoSum(int[] nums, int target)
+        // Yield keyword
+        private static void YieldPractice()
         {
-            for (int o = 0; o < nums.Length; o++)
-            {
-                for (int i = 0; i < nums.Length; i++)
-                {
-                    if (o == i)
-                        continue;
-                    else if (nums[o] + nums[i] == target)
-                        return new int[2] { o, i };
-                }
-            }
-            return null;
+            foreach (int i in Integers())
+                Console.WriteLine(i.ToString());
+
+            foreach (var number in GenerateWithYield())
+                Console.WriteLine(number);
+
+            Console.ReadLine();
         }
+
+        private static IEnumerable<int> Integers()
+        {
+            yield return 4;
+            yield return 1;
+            yield return 2;
+            yield return 8;
+            yield return 16;
+            yield return 16777216;
+        }
+
+        private static IEnumerable<int> GenerateWithYield()
+        {
+            var i = 0;
+            while (i < 5)
+                yield return ++i;
+        } 
+
+
+        // Interfaces
+        private static void InterfacePractice()
+        {
+            ServerRobot serverRobot = new ServerRobot();
+           
+
+        }
+
+     
+
+       
+
+
+
+
+
+
+
+
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -265,7 +216,6 @@ namespace Prep
 
 
         // Parallel.For
-
         private static void ParallelDotFor()
         {
             List<int> listInts = new List<int>();
@@ -289,7 +239,6 @@ namespace Prep
 
 
         // Parallel.Foreach Loop
-
         private static void ParallelDotForeach()
         {
             List<int> listInts = new List<int>();
@@ -313,7 +262,6 @@ namespace Prep
 
 
         // Continuation Task
-
         private static async Task ContinuationTasks()
         {
             Task<DayOfWeek> taskA = Task.Run(() => DateTime.Today.DayOfWeek);
@@ -328,7 +276,6 @@ namespace Prep
 
 
         // ThreadPool Class
-
         private static void RunThreadPool()
         {
             ThreadInfo threadInfo = new ThreadInfo
@@ -351,7 +298,6 @@ namespace Prep
 
 
         // A few ways to unblock the UI
-
         private static async void UnblockUI()
         {
             // First Way
@@ -366,7 +312,8 @@ namespace Prep
 
         private static void DoSomething()
         {
-
+            for (int i = 0; i < 5; i++)
+                Console.WriteLine(i.ToString());
         }
 
 
@@ -375,7 +322,6 @@ namespace Prep
 
 
         // Using Async and Await
-
         private static async void AsyncAwait()
         {
             int number = await Task.Run(() => DoSomethingAsync());
@@ -391,7 +337,6 @@ namespace Prep
 
 
         // Concurrent Collections
-
         private static void ConcurrentCollections()
         {
             // This collection can be accessed by multiple threads at the one time
@@ -412,7 +357,6 @@ namespace Prep
 
 
         // Manage Multithreading
-
         private ReaderWriterLock rwl = new ReaderWriterLock();
         private int myNumber;
         public int Number
@@ -431,7 +375,6 @@ namespace Prep
 
 
         // Locking an object
-
         static readonly object _object = new object();
         private static void ObjectLocking()
         {
@@ -447,7 +390,6 @@ namespace Prep
 
 
         // Cancel a long running task using a cancellation token
-
         CancellationTokenSource tokenSource = new CancellationTokenSource();
 
         private static void CancellationToken()
@@ -474,9 +416,7 @@ namespace Prep
 
 
         // Mutex Example
-
         // NOTE: A mutex locks a resource so that multiple threads cannot access it at the same time
-
         private static Mutex mutex = new Mutex();
         private const int numIterations = 1;
         private const int numThreads = 3;
@@ -616,7 +556,7 @@ namespace Prep
         private static EventWaitHandle clearCount =
             new EventWaitHandle(false, EventResetMode.AutoReset);
 
-        [MTAThread]
+        [STAThread]
         public static void EventWaitHandle()
         {
             // Create an AutoReset EventWaitHandle.
@@ -723,7 +663,6 @@ namespace Prep
 
 
         // Auto Reset Event
-
         private static AutoResetEvent event_1 = new AutoResetEvent(true);
         private static AutoResetEvent event_2 = new AutoResetEvent(false);
 
@@ -837,8 +776,7 @@ namespace Prep
 
             mre.Set();
 
-            // If you run this example in Visual Studio, uncomment the following line:
-            //Console.ReadLine();
+            Console.ReadLine();
         }
 
 
