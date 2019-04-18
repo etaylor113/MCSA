@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,7 +20,13 @@ namespace Prep
             //NullConditionalPractice();
             //AsIsOperatorPractice();
             //YieldPractice();
-            InterfacePractice();
+            //InterfacePractice();
+            //StructPractice();
+            //ImplicitExplicitPractice();
+            //NameOfPractice();
+            //ExceptionFilterPractice();
+            GenericsPractice();
+
 
             //ParallelDotFor();
             //ParallelDotForeach();
@@ -193,22 +200,215 @@ namespace Prep
         // Interfaces
         private static void InterfacePractice()
         {
-            ServerRobot serverRobot = new ServerRobot();
-           
-
+            // Look at 'Robot' class
+            // 'Robot' must implement all properties and methods from interface 'IRobot'
+            // If 'Robot' does not implement all properties and methods, it will not compile
         }
 
-     
+        public interface IRobot
+        {
+            double BatteryLevel { get; set; }
+            void Walk();
+            void ChargeBatteries();
+        }
 
-       
+        class Robot : IRobot
+        {
+            public double BatteryLevel { get; set; } = 100;
+
+            public void Walk()
+            {
+
+            }
+
+            public void ChargeBatteries()
+            {
+
+            }
+        }
 
 
+        // Structs
+            //
+            // - Structures are value types
+            // - Can have methods, fields, indexers, properties, operator methods, and events
+            // - Can have contructors but not destructors
+            // - Can implement one or more interfaces
+            // - Cannot be specified as abstract, virtual, or protected
+        struct Books {
+            public string title;
+            public string author;
+            public string subject;
+            public int bookID;
+        }
+
+        private static void StructPractice()
+        {
+            Books book1;
+            Books book2;
+
+            book1.author = "Micheal T. Fitsimons";
+            book1.bookID = 5342;
+            book1.subject = "Horror";
+            book1.title = "Sewer Troll";
+
+            book2.author = "Ricardo Garcia";
+            book2.bookID = 2867;
+            book2.subject = "Comedy";
+            book2.title = "Poco Luz";
+        }
 
 
+        // Static vs. Non-Static =================================================================
+        // Static classes always derive from object, can can't specify a different base type
+        // Static classes cannot implement an interface
+        // Static classes cannot have an instance members
+        // Static classes can't declare any contructors
+        // Static classes are implicitly abstract, you can't add it yourself
+        // Static classes can be generic 
+        // Static classes can have nested types, static or non-static
+        // Only static, top-level non-generic classes can contain extension methods
+        // It is bad practice for OOP to have public static variables. 
+        // =======================================================================================
+
+        // Implicit vs Explicit
+        private static void ImplicitExplcitExample()
+        {
+            // Implicit - Something is being done for you automatically
+            int x = 10;
+            long y = x;
+
+            // Explicit -  You've written something in the source code to indicate what you want to happen
+            int explicitVar = (int)y;
+        }
 
 
+        // Constructor
+        Program()
+        {
+            // Constructor is called upon instantiation of class
+        }
+
+        // Destructor
+        ~Program()
+        {
+            // Destructor is called when this object is disposed. 
+            // Since C# is garbage collected, it is usually not necessary to use this
+        }
 
 
+        // Encapsulation ===============================================================================================================================
+
+        // private
+        // Allows a class to expose its member variables to other functions and objects
+
+        // public 
+        // Allows a class to hide its member variables and functions from other functions and objects
+
+        // protected
+        // Allows a child class to access the member variables and member functions of its base class
+
+        // internal
+        // Allows a class to expose its member variables and functions to other functions and objects in the current assembly
+
+        // protected internal
+        // Allows a class to hide its member variables and functions from other class objects and functions, except a child class within the same application
+
+        // ==============================================================================================================================================
+
+
+        // Virtual Methods ==============================================================================================================================
+
+        // Virtual methods can be redifined. The virtual keyword designates a mthod that is overridden in derived classes. We can add derived types 
+        // without modifying the rest of the program. The runtime type of objects thus determines behavior.
+
+        // ==============================================================================================================================================
+
+
+        private static void NameOfPractice()
+        {
+            string name1 = nameof(NameOfPractice);
+            string name2 = nameof(name1);
+            string name3 = nameof(Robot);
+        }
+
+
+        private static void ExceptionFilterPractice()
+        {
+            try
+            {
+                string path = Environment.CurrentDirectory + "\\TestFile.txt";
+                string fileText = File.ReadAllText(path);
+
+                if (fileText == null || fileText.Trim() == "")
+                    throw new NullReferenceException();
+            }
+            catch (FileNotFoundException e)
+            {
+
+            }
+            catch (NullReferenceException e)
+            {
+
+            }
+        }
+
+
+        // Generics
+        private static void GenericsPractice()
+        {
+            MyGenericArray<int> intArray = new MyGenericArray<int>(5);
+
+            //setting values
+            for (int c = 0; c < 5; c++)
+            {
+                intArray.setItem(c, c * 5);
+            }
+
+            //retrieving the values
+            for (int c = 0; c < 5; c++)
+            {
+                Console.Write(intArray.getItem(c) + " ");
+            }
+
+            Console.WriteLine();
+
+            //declaring a character array
+            MyGenericArray<char> charArray = new MyGenericArray<char>(5);
+
+            //setting values
+            for (int c = 0; c < 5; c++)
+            {
+                charArray.setItem(c, (char)(c + 97));
+            }
+
+            //retrieving the values
+            for (int c = 0; c < 5; c++)
+            {
+                Console.Write(charArray.getItem(c) + " ");
+            }
+            Console.WriteLine();
+
+            Console.ReadKey();
+        }
+
+        public class MyGenericArray<T>
+        {
+            private T[] array;
+
+            public MyGenericArray(int size)
+            {
+                array = new T[size + 1];
+            }
+            public T getItem(int index)
+            {
+                return array[index];
+            }
+            public void setItem(int index, T value)
+            {
+                array[index] = value;
+            }
+        }
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
