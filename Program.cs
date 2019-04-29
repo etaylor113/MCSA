@@ -9,10 +9,46 @@ using System.Threading.Tasks;
 
 namespace Prep
 {
+    public enum WorkType
+    {
+        GoToMeetings,
+        Golf,
+        GenerateReports
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
+            var custs = new List<Customer>
+            { 
+                new Customer { City = "Phoenix", FirstName = "John", LastName = "Doe", ID = 1 },
+                new Customer { City = "Phoenix", FirstName = "Jane", LastName = "Deer", ID = 500 },
+                new Customer { City = "Seattle", FirstName = "Suki", LastName = "Mon", ID = 3 },
+                new Customer { City = "New York City", FirstName = "Michelle", LastName = "Brown", ID = 4 }
+            };
+
+            var phxEnum = custs
+                .Where(c => c.City == "Phoenix" && c.ID < 500)
+                .OrderBy(c => c.FirstName);
+
+            foreach (var cust in phxEnum)
+            {
+                Console.WriteLine(cust.FirstName + cust.LastName);
+            }
+
+
+            //var data = new ProcessData();
+
+            //BizRulesDelegate addDel = (x, y) => x + y;
+            //BizRulesDelegate multiplyDel = (x, y) => x * y;
+            //data.Process(2,3, addDel);
+            //data.Process(2, 3, multiplyDel);
+
+            //Func<int, int, int> funcAddDel = (x, y) => x + y;
+            //Func<int, int, int> funcMultiplyDel = (x, y) => x * y;
+            //data.ProcessFunc(3, 2, funcAddDel);
+
             //CallMethod();
             //LambdaPractice();
             //LinqPractice();
@@ -25,8 +61,15 @@ namespace Prep
             //ImplicitExplicitPractice();
             //NameOfPractice();
             //ExceptionFilterPractice();
-            GenericsPractice();
+            //GenericsPractice();
+            //int x = FunctionOverLoading(1);
+            //string y = FunctionOverLoading("1");
+            //DerrivedClass derrivedClass = new DerrivedClass();
+            //derrivedClass.Print();
+            //Console.ReadLine();
 
+            //EventsAndDelegates.Run();
+            //EventsAndDelegates.CreatingDelegates();
 
             //ParallelDotFor();
             //ParallelDotForeach();
@@ -42,6 +85,8 @@ namespace Prep
             //EventWaitHandle();
             //ManualResetEvent();
             //AutoResetEvent();
+
+            Console.ReadLine();
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -343,11 +388,11 @@ namespace Prep
                 if (fileText == null || fileText.Trim() == "")
                     throw new NullReferenceException();
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
 
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException)
             {
 
             }
@@ -387,8 +432,8 @@ namespace Prep
             {
                 Console.Write(charArray.getItem(c) + " ");
             }
-            Console.WriteLine();
 
+            Console.WriteLine();
             Console.ReadKey();
         }
 
@@ -400,10 +445,12 @@ namespace Prep
             {
                 array = new T[size + 1];
             }
+
             public T getItem(int index)
             {
                 return array[index];
             }
+
             public void setItem(int index, T value)
             {
                 array[index] = value;
@@ -411,6 +458,62 @@ namespace Prep
         }
 
 
+        // Function Overloading
+        private static int FunctionOverLoading(int x)
+        {
+            return x + 1;
+        }
+
+        private static string FunctionOverLoading(string x)
+        {
+            return x + 1;
+        }
+
+        // Function Overriding
+        class BaseClass
+        {
+            public void Show()
+            {
+                Console.WriteLine("Base Class");
+            }
+
+            public virtual void Print()
+            {
+                Console.WriteLine("Base class says hi!");
+            }
+        }
+
+        class DerrivedClass : BaseClass
+        {
+            // Overrides BaseClass's show function
+            new static void Show()
+            {
+                Console.WriteLine("Derived Class");
+            }
+
+            public override void Print()
+            {
+                base.Print();
+                Console.WriteLine("Derived class says hi!");
+            }
+        }
+
+
+        // Anonymous methods
+
+        delegate void AnonymousPracticeDelegate(int name);
+
+        private static void AnonymousMethodPractice()
+        {
+            AnonymousPracticeDelegate number = delegate (int x)
+            {
+                Console.WriteLine("Anonymous method called!");
+            };
+            
+        }
+
+
+           
         ////////////////////////////////////////////////////////////////////////////////////////////////
         //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
