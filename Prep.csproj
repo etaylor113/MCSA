@@ -44,12 +44,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
+    <Compile Include="DependencyInjection\DependencyInjection.cs" />
     <Compile Include="Dog.cs" />
-    <Compile Include="EventsAndDelegates.cs" />
+    <Compile Include="EventsAndDelegates\EventsAndDelegates.cs" />
+    <Compile Include="Interfaces\AbstractRegularPolygon.cs" />
+    <Compile Include="Interfaces\ConcreteRegularPolygon.cs" />
+    <Compile Include="Interfaces\InterfacePractice.cs" />
+    <Compile Include="EventsAndDelegates\Job.cs" />
+    <Compile Include="EventsAndDelegates\JobChangedEventArgs.cs" />
+    <Compile Include="EventsAndDelegates\Mediator.cs" />
+    <Compile Include="Interfaces\IRegularPolygon.cs" />
+    <Compile Include="Interfaces\Octagon.cs" />
+    <Compile Include="Interfaces\Square.cs" />
+    <Compile Include="Interfaces\Triangle.cs" />
+    <Compile Include="NullPractice\NullTest.cs" />
+    <Compile Include="NullPractice\PlayerCharacter.cs" />
+    <Compile Include="NullPractice\PlayerDisplayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThreadInfo.cs" />
-    <Compile Include="WorkPerformedEventArgs.cs" />
+    <Compile Include="EventsAndDelegates\ThreadInfo.cs" />
+    <Compile Include="EventsAndDelegates\WorkPerformedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prep.Interfaces;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Prep.NullPractice;
 
 namespace Prep
 {
@@ -20,23 +22,11 @@ namespace Prep
     {
         static void Main(string[] args)
         {
-            var custs = new List<Customer>
-            { 
-                new Customer { City = "Phoenix", FirstName = "John", LastName = "Doe", ID = 1 },
-                new Customer { City = "Phoenix", FirstName = "Jane", LastName = "Deer", ID = 500 },
-                new Customer { City = "Seattle", FirstName = "Suki", LastName = "Mon", ID = 3 },
-                new Customer { City = "New York City", FirstName = "Michelle", LastName = "Brown", ID = 4 }
-            };
+            // *****************************************************************
+            // Delegates and Events
 
-            var phxEnum = custs
-                .Where(c => c.City == "Phoenix" && c.ID < 500)
-                .OrderBy(c => c.FirstName);
-
-            foreach (var cust in phxEnum)
-            {
-                Console.WriteLine(cust.FirstName + cust.LastName);
-            }
-
+            //Mediator.GetInstance().OnJobChanged(new object(), new Job() { Title = "Software Developer" });
+            //Mediator.GetInstance().JobChanged += (s, e) => BindData(e.Job);
 
             //var data = new ProcessData();
 
@@ -48,6 +38,39 @@ namespace Prep
             //Func<int, int, int> funcAddDel = (x, y) => x + y;
             //Func<int, int, int> funcMultiplyDel = (x, y) => x * y;
             //data.ProcessFunc(3, 2, funcAddDel);
+
+            //EventsAndDelegates.Run();
+            //EventsAndDelegates.CreatingDelegates();
+
+            // *****************************************************************
+
+
+            // *****************************************************************
+            // Null 
+
+            new NullTest();
+
+
+            // *****************************************************************
+
+
+            // *****************************************************************
+            // Interfaces
+
+            new InterfacePractice();
+
+
+            // *****************************************************************
+
+
+            // *****************************************************************
+            // Dependency Injection (constructor)
+
+            //DependencyInjection di = new DependencyInjection(new Format());
+            //di.Print();
+
+            // *****************************************************************
+
 
             //CallMethod();
             //LambdaPractice();
@@ -68,8 +91,7 @@ namespace Prep
             //derrivedClass.Print();
             //Console.ReadLine();
 
-            //EventsAndDelegates.Run();
-            //EventsAndDelegates.CreatingDelegates();
+
 
             //ParallelDotFor();
             //ParallelDotForeach();
@@ -87,6 +109,11 @@ namespace Prep
             //AutoResetEvent();
 
             Console.ReadLine();
+        }
+
+        private static void BindData(Job job)
+        {
+            Console.WriteLine("Binding data");
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
