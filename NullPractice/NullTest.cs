@@ -8,25 +8,28 @@ namespace Prep.NullPractice
 {
     public class NullTest
     {
-        public NullTest()
+        public static void Start()
         {
-            Run();
-        }
+            var player1 = new PlayerCharacter(new DiamondSkinDefense())
+            {
+                Name = "Evan"
+            };
 
-        public void Run()
-        {
-            var player = new PlayerCharacter();
-            player.Name = "Evan";
-            player.DaysSinceLastLogin = 12;
+            var player2 = new PlayerCharacter(new IronBonesDefense())
+            {
+                Name = "Mike"
+            };
 
+            var player3 = new PlayerCharacter(SpecialDefense.Null)
+            {
+                Name = "John"
+            };
 
-            PlayerDisplayer.Write(player);
+            player1.Hit(10);
+            player2.Hit(10);
+            player3.Hit(10);
 
             Console.ReadLine();
         }
-
-
-       
-
     }
 }

@@ -22,53 +22,44 @@ namespace Prep
     {
         static void Main(string[] args)
         {
-            // *****************************************************************
-            // Delegates and Events
-
-            //Mediator.GetInstance().OnJobChanged(new object(), new Job() { Title = "Software Developer" });
-            //Mediator.GetInstance().JobChanged += (s, e) => BindData(e.Job);
-
-            //var data = new ProcessData();
-
-            //BizRulesDelegate addDel = (x, y) => x + y;
-            //BizRulesDelegate multiplyDel = (x, y) => x * y;
-            //data.Process(2,3, addDel);
-            //data.Process(2, 3, multiplyDel);
-
-            //Func<int, int, int> funcAddDel = (x, y) => x + y;
-            //Func<int, int, int> funcMultiplyDel = (x, y) => x * y;
-            //data.ProcessFunc(3, 2, funcAddDel);
-
-            //EventsAndDelegates.Run();
-            //EventsAndDelegates.CreatingDelegates();
-
-            // *****************************************************************
-
 
             // *****************************************************************
             // Null 
-
-            new NullTest();
-
-
+                NullTest.Start();
             // *****************************************************************
 
 
             // *****************************************************************
             // Interfaces
+                InterfacePractice.Start();
+            // *****************************************************************
 
-            new InterfacePractice();
 
+            // *****************************************************************
+            // Delegates and Events
+                //Mediator.GetInstance().OnJobChanged(new object(), new Job() { Title = "Software Developer" });
+                //Mediator.GetInstance().JobChanged += (s, e) => BindData(e.Job);
 
+                //var data = new ProcessData();
+
+                //BizRulesDelegate addDel = (x, y) => x + y;
+                //BizRulesDelegate multiplyDel = (x, y) => x * y;
+                //data.Process(2,3, addDel);
+                //data.Process(2, 3, multiplyDel);
+
+                //Func<int, int, int> funcAddDel = (x, y) => x + y;
+                //Func<int, int, int> funcMultiplyDel = (x, y) => x * y;
+                //data.ProcessFunc(3, 2, funcAddDel);
+
+                //EventsAndDelegates.Run();
+                //EventsAndDelegates.CreatingDelegates();
             // *****************************************************************
 
 
             // *****************************************************************
             // Dependency Injection (constructor)
-
-            //DependencyInjection di = new DependencyInjection(new Format());
-            //di.Print();
-
+                //DependencyInjection di = new DependencyInjection(new Format());
+                //di.Print();
             // *****************************************************************
 
 
@@ -89,9 +80,6 @@ namespace Prep
             //string y = FunctionOverLoading("1");
             //DerrivedClass derrivedClass = new DerrivedClass();
             //derrivedClass.Print();
-            //Console.ReadLine();
-
-
 
             //ParallelDotFor();
             //ParallelDotForeach();
@@ -110,6 +98,9 @@ namespace Prep
 
             Console.ReadLine();
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
         private static void BindData(Job job)
         {
@@ -270,7 +261,7 @@ namespace Prep
 
 
         // Interfaces
-        private static void InterfacePractice()
+        private static void PracticeInterface()
         {
             // Look at 'Robot' class
             // 'Robot' must implement all properties and methods from interface 'IRobot'

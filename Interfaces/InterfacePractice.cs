@@ -8,12 +8,7 @@ namespace Prep.Interfaces
 {
     class InterfacePractice
     {
-        public InterfacePractice()
-        {
-            Run();
-        }
-
-        private void Run()
+        public static void Start()
         {
             var square = new Square(5);
             DisplayPolygon("Square", square);
@@ -23,7 +18,7 @@ namespace Prep.Interfaces
 
         }
 
-        public void DisplayPolygon(string polygonType, dynamic polygon)
+        public static void DisplayPolygon(string polygonType, dynamic polygon)
         {
             Console.WriteLine("Shape: " + polygonType);
 
